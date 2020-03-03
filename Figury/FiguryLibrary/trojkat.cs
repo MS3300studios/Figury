@@ -11,11 +11,16 @@ namespace FiguryLibrary
             get { return a; }
             set
             {
-                if (value <= 0) throw new ArgumentOutOfRangeException("wartość a musi być dodatnia");
-                else a = value;       
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException("wartość a musi być dodatnia");
+                else if
+                    (isSpelnionyWarunekTrojkata(value, b, c)) a = value;
+                else //nie jest spełniony warunek trójkąta
+                    throw new ArgumentException("nie jest spełniony warunek trojkata przy próbie zmiany A");
+
             }
         }
-       
+
         private double b; //this.b
         public double B
         {
@@ -23,7 +28,10 @@ namespace FiguryLibrary
             set
             {
                 if (value <= 0) throw new ArgumentOutOfRangeException("wartość b musi być dodatnia");
-                else b = value;
+                else if
+                    (isSpelnionyWarunekTrojkata(a, value, c)) b = value;
+                else //nie jest spełniony warunek trójkąta
+                    throw new ArgumentException("nie jest spełniony warunek trojkata przy próbie zmiany B");
             }
         }
         private double c; //this.c
@@ -33,11 +41,26 @@ namespace FiguryLibrary
             set
             {
                 if (value <= 0) throw new ArgumentOutOfRangeException("wartość c musi być dodatnia");
-                else c = value;
+                else if
+                    (isSpelnionyWarunekTrojkata(a, b, value)) c = value;
+                else //nie jest spełniony warunek trójkąta
+                    throw new ArgumentException("nie jest spełniony warunek trojkata przy próbie zmiany C");
             }
         }
 
+        private bool isSpelnionyWarunekTrojkata(double a, double b, double c)
+        {
 
+            if (a + b <= c || a + c <= b || b + c <= a) 
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+           
+        }
 
 
 
@@ -47,16 +70,17 @@ namespace FiguryLibrary
         {
             a = b = c = 1.0;
         }
-        public Trojkat(double a, double b, double c)
+        public Trojkat(double a, double b, double c) //te double są user inputem
         {
-            if (a + b <= c || a + c <= b || b + c <= a) //jeżeli choć jedna z tych kombinacji boków będzie true to wszystko będzie true
-            {
-                throw new ArgumentException("niespełniony warunek trójkąta");
-            }
+            if (a <= 0 || b <= 0 || c <= 0)
+                throw new ArgumentOutOfRangeException("Boki muszą być dodatnie");
 
-            A = a; //(wcześniej było this.a tutaj) this.a zawsze będzie zmienną z klasy
-            B = b;
-            C = c;
+            if (!isSpelnionyWarunekTrojkata(a, b, c)) //jeżeli funkcja isSpelniony... nie wyrzuci wartości true
+                throw new ArgumentException("Nie spełniony warunekt trójkąta!");
+
+            this.a = a; //private double a = (user input) double a;
+            this.b = b;
+            this.c = c;
         }
 
 
@@ -70,13 +94,13 @@ namespace FiguryLibrary
         //właściwości i metody
         public double GetObwod()            //java style
         {
-               return a + b + c; 
+            return a + b + c;
         }
 
         //property zwracające obwód tego trójkąta
         //piszemy w jednej liniice bo kod jest prosty
         public double Obwod => a + b + c;   //C# style
-                
+
         //piszemy to w metodzie bo kod jest skomplikowany
         public double GetPole() //java style
         {
@@ -93,7 +117,7 @@ namespace FiguryLibrary
                 var s = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
                 return s;
             }
-            
+
         }
 
     }
