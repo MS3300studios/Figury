@@ -32,8 +32,9 @@ namespace ConsoleAppFigury
             Console.WriteLine("===============================================");
             t2.A = 100;
             Console.WriteLine(t2);*/
-            //Console.WriteLine("Pole 222");
-           // Console.WriteLine(t1.Pole);
+
+            //Console.WriteLine("Pole 111");
+            //Console.WriteLine(t1.Pole);
             Console.WriteLine("Pole 345");
             Console.WriteLine(t2.Pole);
             
