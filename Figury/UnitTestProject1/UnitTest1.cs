@@ -61,5 +61,31 @@ namespace UnitTestProject1
         {
             Trojkat t = new Trojkat(a, b, c);
         }
+        
+        [DataTestMethod]
+        [DataRow(1,1,1,3)]
+        [DataRow(3,4,5,12)] //wchodzą 4 dane
+        public void PropertyObwodPoprawnie(double a, double b, double c, double wynik) //więc funkcja przyjmuje 4 argumenty
+        {
+            //Act
+            var t = new Trojkat(a, b, c); //jak zawsze konstruujemy trójkąt 
+
+            //Assert
+            Assert.AreEqual(wynik, t.Obwod);
+
+        }
+        [DataTestMethod]
+        //[DataRow(1,1,1,0.433012701892219)]
+        [DataRow(3,4,5,6)]
+        public void PropertyPolePoprawnie(double a, double b, double c, double wynik)
+        {
+            //Act
+            var t = new Trojkat(3, 4, 5);
+
+            //Assert
+            Assert.AreEqual(wynik, t.Pole);
+        
+        }
+
     }
 }
