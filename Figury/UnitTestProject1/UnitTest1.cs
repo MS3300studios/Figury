@@ -7,14 +7,15 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void ConstructorPoprawneDaneTrojkatUtworzony()
+        [DataTestMethod]
+        [DataRow(3, 4, 5)] //(TUTAJ)
+        [DataRow(2, 3, 4)]
+        [DataRow(1, 1, 1)]
+        public void ConstructorPoprawneDaneTrojkatUtworzony(double a, double b, double c) //DataRow wrzuci te argumenty w te miejsca
         {
             //AAA (act arrange assert)
             //Arrange
-            double a = 3;
-            double b = 4;
-            double c = 5;
+            //(arrange jest załatwione TUTAJ)
             //Act
             Trojkat t = new Trojkat(a, b, c);
 
@@ -25,6 +26,40 @@ namespace UnitTestProject1
 
 
 
+        }
+
+        //testujemy konstruktory
+
+        [TestMethod]
+        public void ConstructorDefaultPoprawnie()
+        {
+            //Arrange
+            //Act
+            Trojkat t = new Trojkat();
+            //Assert
+            Assert.AreEqual(1, t.A);
+            Assert.AreEqual(1, t.B); //sprawdza czy wartości są równe
+            Assert.AreEqual(1, t.C);
+        }
+
+        [DataTestMethod] //opis dla innego software'u potrzebny aby framework testowy rozumiał co to za kod
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [DataRow(-1,1,1)]
+        [DataRow(1,-1,1)]
+        [DataRow(1,1,-1)]
+        public void ConstructorUjemnyParametr_ArgumentOutOfRangeExeption(double a,double b,double c)
+        {
+            Trojkat t = new Trojkat(a, b, c);
+        }
+    
+        [DataTestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        [DataRow(1,1,100)]
+        [DataRow(100,1,1)]
+        [DataRow(1,100,1)]
+        public void ConstructorNieSpelnionyWarunekTrojkataWynikiemJestArgumentExeption(double a, double b, double c)
+        {
+            Trojkat t = new Trojkat(a, b, c);
         }
     }
 }
