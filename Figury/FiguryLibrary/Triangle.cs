@@ -8,7 +8,7 @@ namespace FiguryLibrary
     /// <summary>
     /// Trojkat w wersji immutable (niezmiennej) (nikt nie ma prawa zmodyfikować trójkąta po jego utworzeniu)
     /// </summary>
-    public class Triangle
+    public class Triangle : Figure
     {
         //trójkąt jest niezmienny bo ma private set
         public double A //automatic properties 
@@ -56,11 +56,10 @@ namespace FiguryLibrary
             
             return new Triangle(A * factor, B * factor, C * factor);
         }
-      
 
-
-
-
-
+        public override void Draw()
+        {
+            Console.WriteLine("rysowanie trojkata");
+        }
     }
 }

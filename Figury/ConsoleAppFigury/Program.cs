@@ -11,6 +11,17 @@ namespace ConsoleAppFigury
     {
         static void Main()
         {
+            var t = new Triangle();
+            Console.WriteLine(t);
+            Console.WriteLine(t.Color);
+            t.Print();
+
+            var s = new Sphere(10);
+            Console.WriteLine($"s:{s}");
+            
+        }
+        static void Main2()
+        {
             Triangle t = new Triangle();
             Console.WriteLine(t);
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FiguryLibrary
 {
-    public class Circle
+    public class Circle : Figure
     {
         public double R
         {
@@ -45,6 +45,11 @@ namespace FiguryLibrary
         {
             if (factor <= 0) throw new ArgumentException("wsp. musi być dodatni!");
             return new Circle(R*factor);
+        }
+
+        public override void Draw()
+        {
+            Console.WriteLine("Rysowanie kółka");
         }
     }
 }
