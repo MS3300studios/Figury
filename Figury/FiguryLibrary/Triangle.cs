@@ -2,6 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
+
+
+
+
+
+//TODO: make surface property for Triangle class
+
+
+
+
+
+
 namespace FiguryLibrary
 {
 
