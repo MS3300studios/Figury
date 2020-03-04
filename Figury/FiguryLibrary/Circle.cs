@@ -24,7 +24,7 @@ namespace FiguryLibrary
             return $"R: {R}";
         }
 
-        public double Perimeter
+        virtual public double Perimeter
         {
             get
             {
@@ -32,7 +32,7 @@ namespace FiguryLibrary
                 return p;
             }
         }
-        public double Surface
+        virtual public double Surface
         {
             get
             {

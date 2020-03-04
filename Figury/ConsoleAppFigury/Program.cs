@@ -18,7 +18,8 @@ namespace ConsoleAppFigury
 
             var s = new Sphere(10);
             Console.WriteLine($"s:{s}");
-            
+            Console.WriteLine(s.Surface);
+            Console.WriteLine(s.Perimeter);
         }
         static void Main2()
         {
