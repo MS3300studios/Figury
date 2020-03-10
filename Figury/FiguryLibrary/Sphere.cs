@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FiguryLibrary
 {
-    public class Sphere : Circle
+    public class Sphere : Circle, IMeasurable2D
     {
         public Sphere(double r = 1) : base(r) //konstuktor Circle z promieniem koła r =1
                                               //wkładamy tu zmienną r z tąd używając

@@ -20,7 +20,7 @@ namespace FiguryLibrary
     /// <summary>
     /// Trojkat w wersji immutable (niezmiennej) (nikt nie ma prawa zmodyfikować trójkąta po jego utworzeniu)
     /// </summary>
-    public class Triangle : Figure
+    public class Triangle : Figure, IMeasurable2D
     {
         //trójkąt jest niezmienny bo ma private set
         public double A //automatic properties 
@@ -58,7 +58,16 @@ namespace FiguryLibrary
         }
 
         public double Perimeter => A + B + C;
-        
+
+        public double Surface
+        {
+            get
+            {
+                var p = 0.5 * Perimeter;
+                var s = Math.Sqrt(p * (p - A) * (p - B) * (p - C));
+                return s;
+            }
+        }
 
         public Triangle Scale(double factor) //metoda produkująca nowy obiekt 
                                              //o żądanych wartościach w oparciu o stary obiekt

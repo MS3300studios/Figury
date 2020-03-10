@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FiguryLibrary
 {
-    public class Circle : Figure
+    public class Circle : Figure, IMeasurable1D, IMeasurable2D
     {
         public double R
         {
@@ -40,6 +40,8 @@ namespace FiguryLibrary
                 return s;
             }
         }
+
+        public double Length => Perimeter; //implement interface
 
         public Circle Scale(double factor)
         {

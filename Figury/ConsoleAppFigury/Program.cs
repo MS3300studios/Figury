@@ -19,7 +19,37 @@ namespace ConsoleAppFigury
             var s = new Sphere(10);
             Console.WriteLine($"s:{s}");
             Console.WriteLine(s.Surface);
-            Console.WriteLine(s.Perimeter);
+            //Console.WriteLine(s.Perimeter);
+
+            var c = new Circle(1);
+            var t1 = new Triangle(3, 4, 5);
+            var s1 = new Sphere(2);
+
+            List<Figure> lista; //typ generyczny
+            lista = new List<Figure>(); //utworzenie obiektu typu lista
+            lista.Add(t);
+            lista.Add(s);
+            lista.Add(c);
+            lista.Add(t1);
+            lista.Add(s1);
+            lista.Add(new Circle(4)); //nowe koło o promieniu 4 dodane do listy, tylko lista wie gdzie jest kółko. Nikt inny nie może się do niego dostać
+            
+            foreach(var f in lista) //f jest jaką figurą
+            {
+                Console.WriteLine(f);
+            }
+            Console.WriteLine("-----------------------------------------------");
+            var total = 0.0;
+            foreach(var f in lista)
+            {
+                if (f is IMeasurable1D) //sumujemy wszystkie pola figur mierzalnych w 1 wymiarze
+                {
+                    total += ((IMeasurable2D)f).Surface;
+                    Console.WriteLine(f);
+                }
+            }
+
+            Console.WriteLine($"sumaryczne pole: {total}");
         }
         static void Main2()
         {
